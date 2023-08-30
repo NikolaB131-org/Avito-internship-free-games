@@ -12,20 +12,9 @@ export type GameShortApiResponse = {
   freetogame_profile_url: string;
 };
 
-export type GameDetailedApiResponse = {
-  id: number;
-  title: string;
-  thumbnail: string;
+export interface GameDetailedApiResponse extends GameShortApiResponse {
   status: string;
-  short_description: string;
   description: string;
-  game_url: string;
-  genre: string;
-  platform: string;
-  publisher: string;
-  developer: string;
-  release_date: string;
-  freetogame_profile_url: string;
   minimum_system_requirements: {
     os: string;
     processor: string;
@@ -37,4 +26,4 @@ export type GameDetailedApiResponse = {
     id: number;
     image: string;
   }[];
-};
+}

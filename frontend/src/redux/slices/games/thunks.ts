@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { GameShort, FetchGamesArgs } from './types';
-import { GameShortApiResponse } from '../../../types/api';
+import { GameShort } from '../../../../../backend/src/types';
+import { FetchGamesArgs } from './types';
 
 export const fetchGames = createAsyncThunk<GameShort[], FetchGamesArgs>(
   'games/fetchGames',
@@ -9,17 +9,8 @@ export const fetchGames = createAsyncThunk<GameShort[], FetchGamesArgs>(
       `${import.meta.env.VITE_API_URL}/games?platform=${platform}&category=${category}&sort-by=${sortBy}`
     );
 
-    if (!response.ok) rejectWithValue('Ошибка при запросе информации об играх!');
+    if (!response.ok) return rejectWithValue(await response.text());
 
-    const games = await response.json() as GameShortApiResponse[];
-
-    return games.map(game => ({
-      id: game.id,
-      title: game.title,
-      releaseDate: game.release_date,
-      publisher: game.publisher,
-      genre: game.genre,
-      thumbnailLink: game.thumbnail,
-    }));
+    return await response.json() as GameShort[];
   }
 );

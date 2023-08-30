@@ -1,4 +1,4 @@
-import { GameDetailed } from '../redux/slices/game/types';
+import { GameDetailed } from '../../../backend/src/types';
 import { STORAGE_SAVED_GAMES_INFO_KEY } from '../constants';
 
 type SavedGamesInfo = Record<number, { timestamp: number, game: GameDetailed }>;

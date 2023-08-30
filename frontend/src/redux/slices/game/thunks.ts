@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { GameDetailed } from './types';
-import { GameDetailedApiResponse } from '../../../types/api';
+import { GameDetailed } from '../../../../../backend/src/types';
 import { getGameFromCache } from '../../../utils/caching';
 
 export const fetchGameById = createAsyncThunk<GameDetailed, number>(
@@ -11,20 +10,8 @@ export const fetchGameById = createAsyncThunk<GameDetailed, number>(
 
     const response = await fetch(`${import.meta.env.API_URL}/game?id=${id}`);
 
-    if (!response.ok) rejectWithValue('Ошибка при запросе информации об игре!');
+    if (!response.ok) return rejectWithValue(await response.text());
 
-    const game = await response.json() as GameDetailedApiResponse;
-
-    return {
-      id: game.id,
-      title: game.title,
-      releaseDate: game.release_date,
-      publisher: game.publisher,
-      developer: game.developer,
-      genre: game.genre,
-      thumbnailLink: game.thumbnail,
-      screenshots: game.screenshots,
-      minimumSystemRequirements: game.minimum_system_requirements,
-    };
+    return await response.json() as GameDetailed;
   }
 );

@@ -24,7 +24,7 @@ const slice = createSlice({
       })
       .addCase(fetchGames.rejected, (state, action) => {
         state.status = 'failed';
-        state.errorMessage = action.error.message ?? DEFAULT_ERROR_MESSAGE;
+        state.errorMessage = action.payload as string ?? DEFAULT_ERROR_MESSAGE;
       })
   },
 });
