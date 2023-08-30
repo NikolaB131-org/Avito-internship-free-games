@@ -21,5 +21,3 @@ export interface GameDetailed extends GameShort {
     storage: string;
   };
 }
-
-export type SavedGamesInfo = Record<number, { timestamp: number, game: GameDetailed }>;

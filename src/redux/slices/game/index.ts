@@ -1,7 +1,8 @@
-import { InitialState, SavedGamesInfo } from './types';
+import { InitialState } from './types';
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchGameById } from './thunks';
-import { STORAGE_SAVED_GAMES_INFO_KEY, DEFAULT_ERROR_MESSAGE } from '../../../constants';
+import { saveGameToCache } from '../../../utils/caching';
+import { DEFAULT_ERROR_MESSAGE } from '../../../constants';
 
 const initialState: InitialState = {
   game: null,
@@ -21,19 +22,7 @@ const slice = createSlice({
       .addCase(fetchGameById.fulfilled, (state, action) => {
         state.game = action.payload;
         state.status = 'idle';
-
-        // Кэширование
-        const savedGamesInfo = localStorage.getItem(STORAGE_SAVED_GAMES_INFO_KEY);
-        const gameInfo: SavedGamesInfo = {
-          [action.payload.id]: { timestamp: Date.now(), game: action.payload },
-        };
-
-        if (savedGamesInfo !== null) { // если в кэше уже есть игры
-          const prevGamesInfo = JSON.parse(savedGamesInfo) as SavedGamesInfo;
-          localStorage.setItem(STORAGE_SAVED_GAMES_INFO_KEY, JSON.stringify({ ...prevGamesInfo, gameInfo }));
-        } else {
-          localStorage.setItem(STORAGE_SAVED_GAMES_INFO_KEY, JSON.stringify(gameInfo));
-        }
+        saveGameToCache(action.payload); // сохранение игры в кэш
       })
       .addCase(fetchGameById.rejected, (state, action) => {
         state.status = 'failed';
