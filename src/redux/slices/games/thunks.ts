@@ -5,7 +5,9 @@ import { GameShortApiResponse } from '../../../types/api';
 export const fetchGames = createAsyncThunk<GameShort[], FetchGamesArgs>(
   'games/fetchGames',
   async ({ platform, category, sortBy }, { rejectWithValue }) => {
-    const response = await fetch(`${import.meta.env.API_URL}/games?platform=${platform}&category=${category}&sort-by=${sortBy}`);
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/games?platform=${platform}&category=${category}&sort-by=${sortBy}`
+    );
 
     if (!response.ok) rejectWithValue('Ошибка при запросе информации об играх!');
 

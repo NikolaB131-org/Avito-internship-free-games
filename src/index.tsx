@@ -1,4 +1,5 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import Root from './pages/Root';
 import Home from './pages/Home';
 import Game from './pages/Game';
 import React from 'react';
@@ -9,7 +10,7 @@ import './index.css';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
+    <Route path="/" element={<Root />}>
       <Route index element={<Home />}/>
       <Route path="game/:id" element={<Game />} />
     </Route>
