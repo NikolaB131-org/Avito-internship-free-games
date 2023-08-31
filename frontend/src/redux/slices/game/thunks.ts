@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { GameDetailed } from '../../../../../backend/src/types';
 import { getGameFromCache } from '../../../utils/caching';
+import fetchRetry from '../../../utils/fetchRetry';
 
 export const fetchGameById = createAsyncThunk<GameDetailed, number>(
   'game/fetchGameById',
@@ -8,7 +9,7 @@ export const fetchGameById = createAsyncThunk<GameDetailed, number>(
     const cachedGame = getGameFromCache(id); // получение игры из кэша
     if (cachedGame) return cachedGame;
 
-    const response = await fetch(`${import.meta.env.API_URL}/game?id=${id}`);
+    const response = await fetchRetry(3, `${import.meta.env.VITE_API_URL}/game?id=${id}`);
 
     if (!response.ok) return rejectWithValue(await response.text());
 
