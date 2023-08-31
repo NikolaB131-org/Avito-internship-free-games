@@ -13,7 +13,11 @@ const initialState: InitialState = {
 const slice = createSlice({
   name: 'game',
   initialState,
-  reducers: {},
+  reducers: {
+    clearGame(state) {
+      state.game = null;
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchGameById.pending, state => {
@@ -30,5 +34,9 @@ const slice = createSlice({
       })
   },
 });
+
+export const {
+  clearGame,
+} = slice.actions;
 
 export default slice.reducer;

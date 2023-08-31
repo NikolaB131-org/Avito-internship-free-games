@@ -11,8 +11,6 @@ function Root() {
         token: {
           fontFamily: 'Roboto, sans-serif',
           fontSize: 16,
-          // colorInfo: 'var(--accent-color)',
-          // colorLink: 'var(--accent-color)',
           colorPrimary: 'var(--accent-color)',
           colorBgBase: '#141414',
         },
@@ -23,6 +21,23 @@ function Root() {
           Spin: {
             colorPrimary: 'var(--accent-color)',
             colorBgContainer: 'transparent',
+          },
+          Button: {
+            colorPrimary: 'var(--accent-color)',
+            colorPrimaryHover: '#3c8618'
+          },
+          Carousel: {
+            dotHeight: 5,
+            colorBgContainer: 'var(--accent-color)'
+          },
+          Descriptions: {
+            itemPaddingBottom: 4,
+          },
+          Typography: {
+            titleMarginBottom: 8
+          },
+          Select: {
+            colorPrimaryHover: 'var(--accent-color)',
           },
         }
       }}

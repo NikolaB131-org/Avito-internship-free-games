@@ -1,11 +1,10 @@
-import { Card, Typography, List, Image, Spin, Space } from 'antd';
+import { Card, List, Image, Spin, Descriptions } from 'antd';
 import { GameShort } from '../../../../backend/src/types';
 import { useState, useEffect, forwardRef } from 'react';
 import fetchRetry from '../../utils/fetchRetry';
 import { Link } from 'react-router-dom';
 
 const { Meta } = Card;
-const { Text } = Typography;
 
 type Props = {
   data: GameShort;
@@ -73,11 +72,11 @@ const GameCard = forwardRef<HTMLDivElement, Props>(function GameCard({ data }, r
           <Meta
             title={data.title}
             description={
-              <Space style={{ margin: '0 auto' }} direction='vertical' size={'small'}>
-                <Text>Дата релиза: {data.releaseDate}</Text>
-                <Text>Издатель: {data.publisher}</Text>
-                <Text>Жанр: {data.genre}</Text>
-              </Space>
+              <Descriptions column={1}>
+                <Descriptions.Item label='Жанр'>{data.genre}</Descriptions.Item>
+                <Descriptions.Item label='Дата выхода'>{data.releaseDate}</Descriptions.Item>
+                <Descriptions.Item label='Издатель'>{data.publisher}</Descriptions.Item>
+              </Descriptions>
             }
           />
         </Card>

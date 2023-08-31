@@ -27,7 +27,7 @@ export const getGame = async (req: Request, res: Response, next: NextFunction) =
   const formattedGame: GameDetailed = {
     id: game.id,
     title: game.title,
-    releaseDate: game.release_date,
+    releaseDate: game.release_date.split('-').reverse().join('.'),
     publisher: game.publisher,
     developer: game.developer,
     genre: game.genre,

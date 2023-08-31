@@ -7,7 +7,7 @@ import { GameShort } from '../types';
 export const getGames = async (req: Request, res: Response, next: NextFunction) => {
   const platform = req.query.platform;
   const category = req.query.category;
-  const sortBy = req.query.sortBy;
+  const sortBy = req.query['sort-by'];
   const response = await fetch(
     `${FREE_TO_GAME_API_URL}/games?platform=${platform}&category=${category}&sort-by=${sortBy}`
   );

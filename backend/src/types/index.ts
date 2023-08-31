@@ -13,7 +13,7 @@ export interface GameDetailed extends GameShort {
     id: number;
     image: string;
   }[];
-  minimumSystemRequirements: {
+  minimumSystemRequirements?: {
     os: string;
     processor: string;
     memory: string;
