@@ -19,7 +19,11 @@ function Root() {
         components: {
           Layout: {
             colorBgHeader: '#202020',
-          }
+          },
+          Spin: {
+            colorPrimary: 'var(--accent-color)',
+            colorBgContainer: 'transparent',
+          },
         }
       }}
     >

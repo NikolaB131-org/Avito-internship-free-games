@@ -1,2 +1,2 @@
-export const DEFAULT_ERROR_MESSAGE = 'Ошибка!';
+export const DEFAULT_ERROR_MESSAGE = 'Что-то пошло не так';
 export const STORAGE_SAVED_GAMES_INFO_KEY = 'gamesInfo';

@@ -1,5 +1,17 @@
 .list {
-  max-width: 1200px;
+  max-width: 430px;
   margin: auto;
   padding: 50px;
+}
+
+@media (min-width: 576px) {
+  .list {
+    max-width: unset;
+  }
+}
+
+@media (min-width: 1200px) {
+  .list {
+    max-width: 1200px;
+  }
 }

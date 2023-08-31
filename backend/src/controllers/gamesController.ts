@@ -31,7 +31,7 @@ export const getGames = async (req: Request, res: Response, next: NextFunction) 
   const formattedGames: GameShort[] = games.map(game => ({
     id: game.id,
     title: game.title,
-    releaseDate: game.release_date,
+    releaseDate: game.release_date.split('-').reverse().join('.'),
     publisher: game.publisher,
     genre: game.genre,
     thumbnailLink: game.thumbnail,

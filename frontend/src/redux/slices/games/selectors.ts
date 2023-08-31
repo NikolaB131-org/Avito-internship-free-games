@@ -1,3 +1,5 @@
 import { AppState } from '../../store';
 
-export const gameSelector = (state: AppState) => state.game.game;
+export const gamesSelector = (state: AppState) => state.games.games;
+export const gamesStatusSelector = (state: AppState) => state.games.status;
+export const gamesErrorMessageSelector = (state: AppState) => state.games.errorMessage;
